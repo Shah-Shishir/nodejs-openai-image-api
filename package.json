@@ -1,0 +1,30 @@
+{
+  "name": "openai-image",
+  "version": "1.0.0",
+  "description": "A NodeJS API to create image(s) related to a prompt and create variations of a image using OPENAI API.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [
+    "NodeJS",
+    "API",
+    "Express",
+    "OpenAI",
+    "OpenAI",
+    "Node"
+  ],
+  "author": "Shah Newaj Rabbi Shishir",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "openai": "^3.1.0"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.20"
+  }
+}

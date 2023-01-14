@@ -1,0 +1,1 @@
+A NodeJS API to create image(s) related to a prompt and create variations of a image using OPENAI API.
