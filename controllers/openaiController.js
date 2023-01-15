@@ -19,7 +19,7 @@ const generateImages = async (req, res) => {
             size
         });
 
-        res.status(200).json({ data: response.data, message: 'Image generation is successful.' });
+        res.status(200).json({ data: response.data.data, message: 'Image generation is successful.' });
     } catch (err) {
         res.status(400).json({ message: 'Unable to generate desired image(s).' });
     }
