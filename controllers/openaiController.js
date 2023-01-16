@@ -8,7 +8,7 @@ const generateImages = async (req, res) => {
 
     size = size === 'small' ? '256x256' : size === 'medium' ? '512x512' : '1024x1024';
 
-    if (n > 3) {
+    if (n > 10) {
         res.status(400).json({ message: 'Maximum number of images exceeded.' });
     }
 
