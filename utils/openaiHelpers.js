@@ -21,10 +21,7 @@ const validateImageGeneration = (prompt, n, size) => {
     }
 
     if (!['small', 'medium', 'large'].includes(size)) {
-        return ({ 
-            errors: true,
-            message: 'Invalid size.' 
-        });
+        size = 'large';
     }
 
     if (!n) {

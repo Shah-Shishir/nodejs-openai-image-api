@@ -26,46 +26,55 @@ const generateImages = async (req, res) => {
             size
         });
 
-        res.status(200).json({ data: response.data.data, message: 'Image generation is successful.' });
+        res.status(200).json({ imageList: response.data.data, message: 'Image generation is successful.' });
     } catch (err) {
         res.status(400).json({ message: 'Unable to generate desired image(s).' });
     }
 };
 
 const generateImageVariations = async (req, res) => {
-    let { image, n, size } = req.body;
+    const payload = new URLSearchParams({
+        image: req.files.image,
+        n: req.body.n,
+        size: req.body.size
+    });
 
-    if (n > 10) {
-        res.status(400).json({ message: 'Maximum number of images exceeded.' });
-    }
+    // let { image, n, size } = req.body;
 
-    if (!['small', 'medium', 'large'].includes(size)) {
-        res.status(400).json({ message: 'Invalid size.' });
-    }
+    // if (n > 10) {
+    //     res.status(400).json({ message: 'Maximum number of images exceeded.' });
+    // }
 
-    if (!n) {
-        n = 1;
-    }
+    // if (!['small', 'medium', 'large'].includes(size)) {
+    //     size = 'large';
+    // }
 
-    if (!size || !size?.length) {
-        size = '1024x1024';
-    }
+    // if (!n) {
+    //     n = 1;
+    // }
 
-    size = size === 'small' ? '256x256' : size === 'medium' ? '512x512' : '1024x1024';
+    // if (!size || !size?.length) {
+    //     size = '1024x1024';
+    // }
+
+    // size = size === 'small' ? '256x256' : size === 'medium' ? '512x512' : '1024x1024';
 
     try {
-        const response = await openai.createImageVariation({
-            prompt,
-            n,
-            size
-        });
+        const response = await openai.createImageVariation(payload);
 
-        res.status(200).json({ data: response.data.data, message: 'Image generation is successful.' });
-    } catch (err) {
+        res.status(200).json({ data: response.data.data, message: 'Image variation generation is successful.' });
+    } catch (error) {
+        if (error.response) {
+            console.log(error.response.status);
+            console.log(error.response.data);
+        } else {
+            console.log(error.message);
+        }
         res.status(400).json({ message: 'Unable to generate desired image(s).' });
     }
 };
 
 module.exports = {
-    generateImages
+    generateImages,
+    generateImageVariations
 };

@@ -3,6 +3,7 @@ const dotenv = require("dotenv").config();
 const app = express();
 const morgan = require("morgan");
 const cors = require("cors");
+const fileupload = require("express-fileupload");
 
 const PORT = process.env.PORT || 3000;
 
@@ -13,8 +14,9 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
+app.use(fileupload());
 
-app.get("/", (req, res) => {
+app.get("/", () => {
     res.send("<h1>Welcome to OpenAI Node.JS API!</h1>");
 });
 
